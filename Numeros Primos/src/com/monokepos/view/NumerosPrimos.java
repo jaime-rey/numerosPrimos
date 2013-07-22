@@ -22,6 +22,9 @@ public class NumerosPrimos extends JFrame implements Runnable, ActionListener {
 	 * Create the panel.
 	 */
 	public NumerosPrimos() {
+		super();
+		setSize(400, 200);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		setLayout(null);
 
@@ -29,7 +32,7 @@ public class NumerosPrimos extends JFrame implements Runnable, ActionListener {
 		lblNewLabel.setBounds(28, 25, 78, 14);
 		add(lblNewLabel);
 
-		textField = new JTextField();
+		textField = new JTextField("250", 10);
 		textField.setBounds(114, 22, 86, 20);
 		add(textField);
 		textField.setColumns(10);
@@ -54,5 +57,10 @@ public class NumerosPrimos extends JFrame implements Runnable, ActionListener {
 	public void run() {
 		// TODO Auto-generated method stub
 
+	}
+
+	public static void main(String[] args) {
+		NumerosPrimos n = new NumerosPrimos();
+		n.setVisible(true);
 	}
 }
