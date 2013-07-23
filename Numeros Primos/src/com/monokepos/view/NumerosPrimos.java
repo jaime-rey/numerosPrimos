@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 public class NumerosPrimos extends JFrame implements Runnable, ActionListener {
 
@@ -29,12 +31,24 @@ public class NumerosPrimos extends JFrame implements Runnable, ActionListener {
 	 */
 	public NumerosPrimos() {
 		super();
+		try {
+			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+				System.out.println(info.getName());
+				if ("CDE/Motif".equals(info.getName())) {
+					UIManager.setLookAndFeel(info.getClassName());
+					
+				}
+			}
+		} catch (Exception e) {
+			// If Nimbus is not available, you can set the GUI to another look
+			// and feel.
+		}
 		setSize(400, 200);
 		setTitle("Primos");
-
+	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		BorderLayout borde = new BorderLayout();
-		setLayout(borde);
+		getContentPane().setLayout(borde);
 
 		lblNewLabel.setBounds(28, 25, 78, 14);
 
@@ -46,11 +60,11 @@ public class NumerosPrimos extends JFrame implements Runnable, ActionListener {
 		topPanel.add(lblNewLabel);
 		topPanel.add(textField);
 		topPanel.add(btnMostrarPrimos);
-		add(topPanel, BorderLayout.NORTH);
+		getContentPane().add(topPanel, BorderLayout.NORTH);
 
 		textArea.setLineWrap(true);
 		JScrollPane panelTexto = new JScrollPane(textArea);
-		add(panelTexto, BorderLayout.CENTER);
+		getContentPane().add(panelTexto, BorderLayout.EAST);
 
 		setVisible(true);
 	}
